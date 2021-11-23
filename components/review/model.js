@@ -10,11 +10,11 @@ const reviewSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    user: {
+    userId: {
         type: String,
         required: true,
     },
-    starts: {
+    stars: {
         type: Number,
         required: true,
     },

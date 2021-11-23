@@ -6,11 +6,7 @@ async function createQuestion(question){
 }
 
 async function getQuestion(filterQuestion){
-    let filter = {};
-    if(filterQuestion){
-        filter = { _id: filterQuestion };
-    }
-    return await Model.find(filter)
+    return await Model.find(filterQuestion)
 }
 
 async function updateQuestion(data){

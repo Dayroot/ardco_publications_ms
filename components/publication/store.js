@@ -6,11 +6,7 @@ async function createPublication(publication){
 }
 
 async function getPublication(filterPublication){
-    let filter = {};
-    if(filterPublication){
-        filter = { _id: filterPublication };
-    }
-    return await Model.find(filter)
+    return await Model.find(filterPublication)
 }
 
 async function updatePublication(data){

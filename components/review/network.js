@@ -13,8 +13,8 @@ router.post('/', function(req, res){
         });
 });
 
-router.get('/:id', function(req, res){
-    controller.getReview(req.params.id)
+router.get('/', function(req, res){
+    controller.getReview(req.query)
         .then( data => {
             response.success(req, res, data, 200);
         })
@@ -23,15 +23,7 @@ router.get('/:id', function(req, res){
         });
 });
 
-router.get('/', function(req, res){
-    controller.getReview()
-        .then( data => {
-            response.success(req, res, data, 200);
-        })
-        .catch( e => {
-            response.error(req, res, "Unexpected error", 500, e);
-        });
-});
+
 
 router.patch('/', function(req, res){
     controller.updateReview(req.body)

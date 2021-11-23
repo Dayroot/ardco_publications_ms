@@ -6,20 +6,7 @@ async function createReview(review){
 }
 
 async function getReview(filterReview){
-    return new Promise( (resolve, reject) => {
-        let filter = {};
-        if(filterReview){
-            filter = { _id: filterReview };
-        }
-        Model.find( filter)
-            .populate('products')
-            .exec( (error, populated) => {
-                if(error){
-                    return reject(error);
-                }
-                resolve(populated)
-            });
-    })
+    return await Model.find(filterReview)
 }
 
 async function updateReview(data){
