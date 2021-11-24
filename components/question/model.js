@@ -9,7 +9,6 @@ const answerSchema = new Schema({
     },
     text: {
         type: String,
-        required:true,
     },
 
 });
@@ -33,7 +32,7 @@ const questionSchema = new Schema({
     },
     answer: {
         type: answerSchema,
-        default: () => ({}),
+        default: null,
     }
 });
 
