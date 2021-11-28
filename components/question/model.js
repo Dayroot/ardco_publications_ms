@@ -36,6 +36,18 @@ const questionSchema = new Schema({
     }
 });
 
+//Populate reference
+questionSchema.post('save', function(doc, next){
+    doc.populate('publication').then( () => next() );
+});
+
+questionSchema.post('find', function(doc, next){
+    doc.populate('publication').then( () => next() );
+});
+
+questionSchema.post('findOneAndUpdate', function(doc, next){
+    doc.populate('publication').then( () => next() );
+});
 
 
 const model = mongoose.model('Question', questionSchema);

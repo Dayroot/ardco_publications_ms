@@ -25,5 +25,18 @@ const reviewSchema = new Schema({
 
 });
 
+//Populate reference
+reviewSchema.post('save', function(doc, next){
+    doc.populate('publication').then( () => next() );
+});
+
+reviewSchema.post('find', function(doc, next){
+    doc.populate('publication').then( () => next() );
+});
+
+reviewSchema.post('findOneAndUpdate', function(doc, next){
+    doc.populate('publication').then( () => next() );
+});
+
 const model = mongoose.model('Review', reviewSchema);
 module.exports = model;
