@@ -14,7 +14,8 @@ router.post('/', function(req, res){
 });
 
 router.get('/', function(req, res){
-    controller.getQuestion(req.query)
+    const filterQuestion =  Object.keys(req.query).length == 0 ? null : req.query;
+    controller.getQuestion(filterQuestion)
         .then( data => {
             response.success(req, res, data, 200);
         })

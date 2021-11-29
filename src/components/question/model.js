@@ -16,7 +16,8 @@ const answerSchema = new Schema({
 const questionSchema = new Schema({
     publication: {
         type: Schema.ObjectId,
-        required: true
+        required: true,
+        ref: 'Publication'
     },
     date: {
         type: Date,
@@ -33,7 +34,15 @@ const questionSchema = new Schema({
     answer: {
         type: answerSchema,
         default: null,
-    }
+    },
+    status: {
+        type: String,
+        required:true,
+        enum: {
+            values: ['por responder', 'respondida'],
+            message: '{VALUE} is not supported'
+        }
+    },
 });
 
 //Populate reference
@@ -41,8 +50,8 @@ questionSchema.post('save', function(doc, next){
     doc.populate('publication').then( () => next() );
 });
 
-questionSchema.post('find', function(doc, next){
-    doc.populate('publication').then( () => next() );
+questionSchema.pre('find', function(){
+    this.populate('publication');
 });
 
 questionSchema.post('findOneAndUpdate', function(doc, next){

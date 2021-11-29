@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const reviewSchema = new Schema({
     publication: {
         type: Schema.ObjectId,
-        required: true
+        required: true,
+        ref: 'Publication'
     },
     date: {
         type: Date,
@@ -30,8 +31,8 @@ reviewSchema.post('save', function(doc, next){
     doc.populate('publication').then( () => next() );
 });
 
-reviewSchema.post('find', function(doc, next){
-    doc.populate('publication').then( () => next() );
+reviewSchema.pre('find', function(){
+    this.populate('publication');
 });
 
 reviewSchema.post('findOneAndUpdate', function(doc, next){
